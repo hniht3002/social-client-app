@@ -3,7 +3,7 @@ import {AiTwotoneMessage} from 'react-icons/ai'
 import {PiMagnifyingGlassDuotone} from "react-icons/pi"
 import Tippy from '@tippyjs/react/headless';
 function Header() {
-    return (<div className="wrapper w-full pb-1 border-2 border-rose-600 bg-white">
+    return (<div className="wrapper w-full pb-1 shadow-xl shadow-gray-200 bg-white">
         <div className="flex justify-between w-5/6 m-auto h-14 items-center">
             <div className="logo">
                 <img src="../../../assets/logo/logo.png" alt="Logo" />

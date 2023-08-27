@@ -1,11 +1,11 @@
 import "@/App.css"
 import routes from "@/routes/routes"
-import { Routes, Route, Redirect } from "react-router-dom";
+import { Routes, Route} from "react-router-dom";
 import { registered } from "./data/GlobalState";
 
 function App() {
   if(!registered) {
-    return <Redirect/>
+    return <div></div>
   } else {
     return (
       <div className="App">
