@@ -1,8 +1,8 @@
 import { registered } from "@/data/GlobalState"
 import PostForm from "@/components/home/PostCreate/PostForm"
-import PostHeader from "@/components/home/PostView/PostHeader"
-import PostContent from "@/components/home/PostView/PostContent"
-import PostReact from "@/components/home/PostView/PostReact"
+import PostHeader from "@/components/commonComponent/PostView/PostHeader"
+import PostContent from "@/components/commonComponent/PostView/PostContent"
+import PostReact from "@/components/commonComponent/PostView/PostReact"
 import TrendingForYou from "@/components/home/TrendingHagTag/TrendingForYou"
 function Home() {
     if(!registered) {
@@ -12,7 +12,7 @@ function Home() {
     return (
         <div className="mt-12">
             <div className="flex gap-4">
-            <div className="w-[70%] shadow-xl shadow-gray-400">
+            <div className="w-[70%]">
                 <PostForm/>
                 <div className="w-full h-12  shadow-xl shadow-gray-100"></div>
                 <div className="mt-16 pt-2">

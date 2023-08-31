@@ -3,11 +3,12 @@ import {BiTrendingUp} from 'react-icons/bi'
 import {FaUserFriends} from 'react-icons/fa'
 import {HiOutlineUserGroup} from 'react-icons/hi'
 import {AiOutlineSave} from 'react-icons/ai'
+import {BiUserCircle} from 'react-icons/bi'
 function NavBar(){
-    const className = 'grid grid-cols-5 ml-2 mt-12 font-bold text-xl cursor-pointer'
+    const className = 'grid grid-cols-5 ml-2 mt-8 font-bold text-xl cursor-pointer hover:bg-gray-100 hover:text-blue-600 p-2 rounded-lg fade-out'
     const classIcon = 'mt-1'
     return (
-        <div className='w-full mt-12 rounded-lg pb-4 shadow-xl shadow-gray-400'>
+        <div className='w-full pt-12 rounded-lg pb-4 border-r-2 border-gray-200 h-[100vh]'>
            <nav>
            <a href='/'>
                 <div className={className}>
