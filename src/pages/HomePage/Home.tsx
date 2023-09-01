@@ -17,7 +17,7 @@ function Home() {
                 <div className="w-full h-12  shadow-xl shadow-gray-100"></div>
                 <div className="mt-16 pt-2">
                     <PostHeader/>
-                    <PostContent/>
+                    <PostContent content="Hi" file="https://antimatter.vn/wp-content/uploads/2022/10/hinh-anh-gai-xinh-de-thuong.jpg"/>
                     <PostReact/>
                 </div>
            </div>

@@ -1,5 +1,5 @@
 import {AiOutlineMenu,AiOutlineClose} from 'react-icons/ai'
-function postHeader(){
+function PostHeader(){
     return(
         <div className="flex justify-between w-[80%] mx-auto">
             <div className="flex">
@@ -19,4 +19,4 @@ function postHeader(){
     )
 }
 
-export default postHeader
+export default PostHeader
