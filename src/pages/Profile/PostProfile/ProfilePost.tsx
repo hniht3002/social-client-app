@@ -1,9 +1,10 @@
 import React, { useEffect, useState } from "react";
-import PostContent from "@/components/commonComponent/PostView/PostContent";
-import PostReact from "@/components/commonComponent/PostView/PostReact";
-import PostHeader from "@/components/commonComponent/PostView/PostHeader";
+import PostContent from "@/components/Post/PostView/PostContent";
+import PostReact from "@/components/Post/PostView/PostReact";
+import PostHeader from "@/components/Post/PostView/PostHeader";
 import PostFilter from "@/components/Profile/ProfilePost/PostFilter";
 import axiosInstance from "@/plugins/axios";
+import Loading from "@/components/commonComponent/Loading/Loading";
 import { IPost } from "@/types/post/post";
 function ProfilePost() {
   let [posts, setPosts] = useState<IPost[] | null>(null);
@@ -13,7 +14,7 @@ function ProfilePost() {
       const limit = 5;
       try {
         const postData = await axiosInstance.get(
-          `http://localhost:3001/get-post-user?id=${id}&limit=${limit}`
+          `/get-post-user?id=${id}&limit=${limit}`
         );
         setPosts(postData.data.posts);
       } catch (error) {
@@ -43,7 +44,9 @@ function ProfilePost() {
             ))}
           </ul>
         ) : (
-          <p>Loading...</p>
+            <div className="w-2/4 mx-auto p-8">
+                <Loading/>
+            </div>
         )}
       </div>
     </div>

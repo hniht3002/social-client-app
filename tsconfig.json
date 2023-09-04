@@ -26,5 +26,10 @@
   },
   "include": [
     "src"
-  ]
+  ],
+  "paths": {
+    "path": ["node_modules/path-browserify"],
+    "os": ["node_modules/os-browserify/browser"],
+    "crypto": ["node_modules/crypto-browserify"]
+  }
 }

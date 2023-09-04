@@ -1,8 +1,8 @@
 import { registered } from "@/data/GlobalState"
 import PostForm from "@/components/home/PostCreate/PostForm"
-import PostHeader from "@/components/commonComponent/PostView/PostHeader"
-import PostContent from "@/components/commonComponent/PostView/PostContent"
-import PostReact from "@/components/commonComponent/PostView/PostReact"
+import PostHeader from "@/components/Post/PostView/PostHeader"
+import PostContent from "@/components/Post/PostView/PostContent"
+import PostReact from "@/components/Post/PostView/PostReact"
 import TrendingForYou from "@/components/home/TrendingHagTag/TrendingForYou"
 function Home() {
     if(!registered) {

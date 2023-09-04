@@ -4,6 +4,7 @@ import { Routes, Route} from "react-router-dom";
 import { registered } from "./data/GlobalState";
 
 function App() {
+  
   if(!registered) {
     return <div></div>
   } else {
