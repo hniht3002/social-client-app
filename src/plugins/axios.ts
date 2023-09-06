@@ -7,6 +7,7 @@ console.log(base_API_URL);
 const axiosInstance = axios.create({
   baseURL: base_API_URL,
   headers: {
+    authorization: "null"
   },
 });
 
