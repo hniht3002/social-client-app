@@ -21,7 +21,7 @@ const FriendCard:React.FC<IFriend> = (props) =>{
         </button>
       </div>
     </div>
-  );
+  )
 }
 
 export default FriendCard;

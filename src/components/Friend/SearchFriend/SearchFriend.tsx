@@ -14,12 +14,14 @@ const SearchFriend = () => {
   }
   const handleBlur= ()=>{
     setShow("hidden")
+    if(!value){
+      setList([])
+    }
   }
   useEffect(() => {
     try {
       const sreach = async () => {
         if (value) {
-          setList([]);
           const userList = await axiosInstance.get(
             `/search-friend?search=${value}`
           );
@@ -35,7 +37,7 @@ const SearchFriend = () => {
     }
   }, [value]);
   return (
-    <div>
+    <div onMouseLeave={handleBlur}>
       <input
         type="text"
         placeholder="Search Friend"
@@ -43,22 +45,19 @@ const SearchFriend = () => {
         value={value}
         onChange={handleChange}
         onClick={handleClick}
-        onBlur={handleBlur}
       />
       <div className={show}>
         {list?.length ? (
           <ul className="w-full drop-shadow-xl bg-white pt-8 rounded-xl">
             {list.map((item) => (
               <li key={item.id}>
-                <div className=" flex w-5/6 justify-between p-2 cursor-pointer">
+                <div className=" flex w-3/6 justify-between p-2 cursor-pointer">
                   <div className="mt-2">
                     <AiOutlineSearch />
                   </div>
                   <p className="mt-[4px]">{item.name}</p>
-                  <button className="bg-blue-400 text-sm p-2 rounded-xl text-white">Add friend</button>
                 </div>
               </li>
-              // Render other data properties here as needed
             ))}
           </ul>
         ) : (

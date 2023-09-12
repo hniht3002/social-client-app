@@ -1,4 +1,5 @@
 export type IFriend = {
-    image:string,
-    name:string
+    id:number,
+    idUserRecieve:string,
+    idUserSend:string
 }

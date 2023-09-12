@@ -1,4 +1,4 @@
-import FriendAll from "@/components/Friend/FriendAll"
+import FriendAll from "@/components/Friend/FriendALl/FriendAll"
 import FriendSuggestion from "@/components/Friend/FriendSuggestion"
 import SearchFriend from "@/components/Friend/SearchFriend/SearchFriend"
 function Friend(){
