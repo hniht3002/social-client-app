@@ -1,34 +1,97 @@
-function PostForm(){
-    const cols =40;
-    const rows= 3;
-    const shareClass = "flex justify-around w-full"
-    return(
-        <div className="flex gap-0 ml-10 justify-center">
-            <img src="https://taimienphi.vn/tmp/cf/aut/anh-gai-xinh-1.jpg" alt="" className="rounded-full w-12 h-12"/>
-            <div>
-                <textarea name="" id="" cols={cols} rows={rows} placeholder="What is happening?" className="px-4 py-2 border-2 border-gray-500 resize-none rounded-xl hover:border-gray-300 focus:outline-none focus:border-blue-500 transition-colors"></textarea>
-                <div className="grid grid-cols-4 gap-1 mt-4">
-                    <div className={shareClass}>
-                        <img src="/homeImage/image.png" alt="Post icon" className="w-8 h-8"/>
-                        <p className="mt-1">Hình ảnh</p>
-                    </div>
-                    <div className={shareClass}>
-                        <img src="/homeImage/video.png" alt="Video" className="w-8 h-8" />
-                        <p className="mt-1 mr-2">Video</p>
-                    </div>
-                    <div className={shareClass}>
-                        <img src="/homeImage/emotion.png" alt="Emotion" className="w-8 h-8"/>
-                        <p className="mt-1 ml-2">Biểu cảm</p>
-                    </div>
-                   <div>
-                   <button className="bg-blue-500 text-white py-2 px-4 rounded-xl border-blue-500 border-2 hover:bg-white hover:border-blue-500 hover:text-blue-500 transition-colors mr-2"> 
-                        Post
-                    </button>
-                   </div>
-                </div>
-            </div>
+import { CiCircleRemove } from "react-icons/ci";
+import { BsFileEarmarkImage } from "react-icons/bs";
+import React, { useState } from "react";
+import UserView from "@/components/commonComponent/userView/UserView";
+import axiosInstance from "@/plugins/axios";
+const PostForm:React.FC<any> = ({handleShow}) => {
+  const [imageUrl, setImageUrl] = useState<string>();
+  const [file, setFile] = useState<File | null>();
+  const [content, setContent] = useState<string>("");
+  const handleUpload = (e: React.ChangeEvent<HTMLInputElement>) => {
+    if (e.currentTarget.files) {
+      const file = e.currentTarget.files[0];
+      setFile(file);
+      const fileReader = new FileReader();
+      fileReader.onload = (e) => {
+        if (typeof e.target?.result == "string") {
+          setImageUrl(e.target?.result);
+        }
+      };
+      fileReader.readAsDataURL(file);
+    } else {
+      alert("Need to select a file");
+    }
+  };
+  const formData = new FormData();
+  formData.append("userId", "1");
+  formData.append("content", content);
+  if (file) {
+    formData.append("file", file);
+  }
+  const handleSubmit = async () => {
+    try {
+      const message = await axiosInstance.post("/create-post", formData);
+      console.log(message.data);
+      alert("Create post success")
+    } catch (error) {
+      console.log(error);
+    }
+  };
+  return (
+    <div className={`absolute top-0 bottom-0 left-0 right-0 bg-gray-200/50 w-full h-full flex justify-center items-center`}>
+      <div className="w-[450px] h-[450px] bg-white rounded-lg  drop-shadow-2xl">
+        <div className="w-full flex justify-around mt-2 pt-4 border-b-[1px] pb-2 border-gray-200">
+          <div></div>
+          <h1 className="font-bold text-xl">Create Post</h1>
+          <CiCircleRemove className="mt-2 font-bold cursor-pointer" onClick={handleShow}/>
         </div>
-    )
-}
+        <div className="mt-4 ml-2">
+          <UserView />
+        </div>
+        <div className="h-[55%]">
+          <div className="w-full mt-2">
+            <input
+              type="text"
+              placeholder="What is happening ?"
+              className="py-2 border-none rounded-lg w-4/5"
+              onInput={(e) => setContent(e.currentTarget.value)}
+            />
+          </div>
+          <div className="h-3/5">
+            <label htmlFor="file" className="p-2 h-full">
+              <div className="w-4/5 h-full mx-auto rounded-lg align-center bg-gray-200 outline-none cursor-pointer flex justify-center items-center relative">
+                <BsFileEarmarkImage className="w-8 h-8" />
+                <p className="ml-2 text-2xl"> Add image/video</p>
+                {imageUrl && (
+                  <img
+                    src={imageUrl}
+                    alt="Hình ảnh đã chọn"
+                    className="absolute bg-gray-200 top-0 left-0 h-full w-full overflow-auto rounded-lg"
+                  />
+                )}
+              </div>
+            </label>
+            <input
+              type="file"
+              name="file"
+              id="file"
+              className="hidden"
+              onInput={handleUpload}
+            />
+          </div>
+        </div>
+        <button
+          className="bg-blue-400 w-4/5 p-2 rounded-lg text-white"
+          onClick={() => {
+            handleSubmit();
+            handleShow();
+          }}
+        >
+          Post
+        </button>
+      </div>
+    </div>
+  );
+};
 
-export default PostForm
+export default PostForm;

@@ -8,13 +8,14 @@ import Group from "@/pages/Group/Group"
 import Profile from "@/pages/Profile/PostProfile/ProfilePost"
 import FriendProfile from "@/pages/Profile/FriendProfile/FriendProfile"
 import AuthenLayout from "@/layouts/AuthenLayou/AuthenLayout"
+import FriendLayout from "@/layouts/FriendLayout/FriendLayout"
 import Login from "@/pages/AuthenPage/Login/Login"
 const routes = [
     {path: '/', component: Home, layout: MainLayout},
     {path:'/register', component: Register, layout: AuthenLayout},
     {path:'/login', component: Login, layout: AuthenLayout},
     {path:'/trend', component: Trend, layout :MainLayout},
-    {path:'/friend', component: Friend, layout:MainLayout},
+    {path:'/friend', component: Friend, layout:FriendLayout},
     {path:'/group',component: Group, layout: MainLayout },
     {path:'/profile',component: Profile,layout: ProfileLayout},
     {path:'/profile/friend',component:FriendProfile,layout:ProfileLayout}

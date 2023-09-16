@@ -1,32 +1,74 @@
 import { registered } from "@/data/GlobalState"
-import PostForm from "@/components/home/PostCreate/PostForm"
+import PostShow from "@/components/home/PostCreate/PostShow"
 import PostHeader from "@/components/Post/PostView/PostHeader"
 import PostContent from "@/components/Post/PostView/PostContent"
 import PostReact from "@/components/Post/PostView/PostReact"
 import TrendingForYou from "@/components/home/TrendingHagTag/TrendingForYou"
+import PostForm from "@/components/home/PostCreate/PostForm"
+import { IPost } from "@/types/post/post"
+import { useState, useEffect } from "react"
+import axiosInstance from "@/plugins/axios"
 function Home() {
-    if(!registered) {
-        return (<h1>Register page </h1>)
+  const id = 1;
+  const [post, setPost] = useState<IPost[]>();
+  const [show, setShow] = useState<boolean>(false)
+  const handleShow = () =>{
+    if(show===false){
+      setShow(true)
     }
-
-    return (
-        <div className="mt-12">
-            <div className="flex gap-4">
-            <div className="w-[70%]">
-                <PostForm/>
-                <div className="w-full h-12  shadow-xl shadow-gray-100"></div>
-                <div className="mt-16 pt-2">
-                    <PostHeader/>
-                    <PostContent content="Hi" file="https://antimatter.vn/wp-content/uploads/2022/10/hinh-anh-gai-xinh-de-thuong.jpg"/>
-                    <PostReact/>
-                </div>
-           </div>
-           <div className="w-[30%]">
-                <TrendingForYou/>
-           </div>
-            </div>
+    else {
+      setShow(false)
+    }
+  }
+  useEffect(() => {
+    const getPost = async () => {
+      try {
+        const postData = await axiosInstance.post(`/get-post-home/${id}`, {
+          offset: 5,
+        });
+        setPost(postData.data.posts);
+      } catch (error) {
+        console.log(error);
+      }
+    };
+    getPost();
+  }, []);
+  if (!registered) {
+    return <h1>Register page </h1>;
+  }
+  return (
+    <div className="mt-12">
+      <div className="flex gap-4">
+        <div className="w-[70%]">
+          <div onClick={handleShow}>
+            <PostShow/>
+          </div>
+          <div className="w-full h-12  shadow-xl shadow-gray-100"></div>
+          {show && <PostForm handleShow={handleShow}/>}
+          <div>
+            {post ? (
+             <ul>
+             {post.map((item) => (
+               <li key={item.id}>
+                 <div className="w-full mx-auto mt-12">
+                   <PostHeader />
+                   <PostContent content={item.content} file={item.file} />
+                   <PostReact />
+                 </div>
+               </li>
+             ))}
+           </ul>
+            ) : (
+              <div>No post to show</div>
+            )}
+          </div>
         </div>
-    )
+        <div className="w-[30%]">
+          <TrendingForYou />
+        </div>
+      </div>
+    </div>
+  );
 }
 
 export default Home;

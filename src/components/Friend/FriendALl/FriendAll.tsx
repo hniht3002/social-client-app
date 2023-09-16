@@ -1,53 +1,61 @@
-import GearFriend from "../../LayoutComponent/GearFriend/GearFriend"
-import FriendCard from "../FriendCard/FriendCard"
-import {IFriend} from "@/types/friend/friend"
-import axiosInstance from "@/plugins/axios"
-import Loading from "@/components/commonComponent/Loading/Loading"
-import {useState,useEffect} from 'react'
+import FriendCard from "../FriendCard/FriendCard";
+import { IFriend } from "@/types/friend/friend";
+import axiosInstance from "@/plugins/axios";
+import Loading from "@/components/commonComponent/Loading/Loading";
+import { useState, useEffect } from "react";
+
 function FriendAll() {
-  const id = 1
-  const [friend,setFriend] = useState<IFriend[]>()
-  useEffect(()=>{
-    const getData =async ()=>{
+  const id = 1;
+  const [friend, setFriend] = useState<IFriend[]>();
+  const [loading, setLoading] = useState(true);
+
+  useEffect(() => {
+    const getData = async () => {
       try {
-        const friendData =await axiosInstance.get(`/get-all-friend?id=${id}`)
-        setFriend(friendData.data.friends)
+        const friendData = await axiosInstance.get(`/get-all-friend?id=${id}`);
+        setFriend(friendData.data.friends);
+        setLoading(false);
       } catch (error) {
         console.log(error);
       }
+    };
+    getData();
+  }, []);
+  const newList =(id:number)=>{
+    if(friend){
+      const updatedFriendList = friend.filter((item) => item.id !== id);
+      setFriend(updatedFriendList)
     }
-    getData()
-
-  },[])
+  }
   console.log(friend);
   
   return (
     <div>
-      <div className="flex justify-around">
-        <div></div>
-        <h1 className="font-bold text-2xl">Friends</h1>
-        <div>
-          <GearFriend/>
-        </div>
-      </div>
       <div>
-      <div>
-        {friend ? (
-          <ul className="grid grid-cols-3 mt-8 gap-2">
+        {loading ? (
+          <div className="w-2/4 mx-auto p-8">
+            <Loading />
+          </div>
+        ) : friend && friend.length > 0 ? (
+          <ul className="grid grid-cols-3 gap-2">
             {friend.map((item) => (
               <li key={item.id}>
                 <div className="w-full mx-auto mt-12">
-                  <FriendCard image={`http://localhost:3001/avata/${item.id}.png`} name = "Anh thu"/>
+                  <FriendCard
+                    id={item.id}
+                    image={`http://localhost:3001/avata/${item.id}.png`}
+                    name="Anh thu"
+                    onUpdateListFriend={()=>newList(item.id)}
+                  />
                 </div>
               </li>
             ))}
           </ul>
         ) : (
-            <div className="w-2/4 mx-auto p-8">
-                <Loading/>
-            </div>
+          <div className="w-2/4">
+            <p className="">Let connect send add friend to make new friend.</p>
+          </div>
         )}
-      </div>
       </div>
     </div>
   );
