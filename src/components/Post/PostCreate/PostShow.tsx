@@ -1,7 +1,7 @@
 function PostShow() {
   const shareClass = "flex justify-around w-full cursor-pointer";
   return (
-    <div className="flex gap-4 ml-10 justify-center">
+    <div className="flex gap-4 justify-center bg-white p-4 rounded-lg">
       <img
         src="https://taimienphi.vn/tmp/cf/aut/anh-gai-xinh-1.jpg"
         alt=""

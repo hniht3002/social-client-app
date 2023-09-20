@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import PostContent from "@/components/Post/PostView/PostContent";
-import PostReact from "@/components/Post/PostView/PostReact";
+import PostReact from "@/components/Post/PostView/PostReact/PostReact";
 import PostHeader from "@/components/Post/PostView/PostHeader";
 import PostFilter from "@/components/Profile/ProfilePost/PostFilter";
 import axiosInstance from "@/plugins/axios";
@@ -37,7 +37,7 @@ function ProfilePost() {
                 <div className="w-full mx-auto mt-12">
                   <PostHeader />
                   <PostContent content={item.content} file={item.file} />
-                  <PostReact />
+                  <PostReact id={1}/>
                 </div>
               </li>
               // Render other data properties here as needed

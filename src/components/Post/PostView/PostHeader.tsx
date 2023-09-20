@@ -2,7 +2,7 @@ import {AiOutlineMenu,AiOutlineClose} from 'react-icons/ai'
 import UserView from '@/components/commonComponent/userView/UserView'
 function PostHeader(){
     return(
-        <div className="flex justify-between w-[80%] mx-auto">
+        <div className="flex justify-between w-[80%] mx-auto pt-6">
            <UserView />
             <div className="flex justify-around mt-4">
                 <div className='mr-2'>

@@ -1,5 +1,5 @@
 import Header from "@/components/commonComponent/Header/Header";
-import ProfileUserInfor from "@/components/Profile/ProfileLayoutComp/ProfileUserInfor";
+import ProfileUserInfor from "@/components/LayoutComponent/ProfileLayoutComp/ProfileUserInfor";
 import NavProfile from "@/components/LayoutComponent/NavProfile/NavProfile";
 import { ReactNode } from "react";
 function ProfileLayout({ children }: { children: ReactNode }) {

@@ -1,9 +1,9 @@
 import { CiCircleRemove } from "react-icons/ci";
 import { BsFileEarmarkImage } from "react-icons/bs";
-import React, { useState } from "react";
+import React, { useState,useEffect } from "react";
 import UserView from "@/components/commonComponent/userView/UserView";
 import axiosInstance from "@/plugins/axios";
-const PostForm:React.FC<any> = ({handleShow}) => {
+const PostForm:React.FC<any> = ({handleShow,updatePost}) => {
   const [imageUrl, setImageUrl] = useState<string>();
   const [file, setFile] = useState<File | null>();
   const [content, setContent] = useState<string>("");
@@ -33,10 +33,19 @@ const PostForm:React.FC<any> = ({handleShow}) => {
       const message = await axiosInstance.post("/create-post", formData);
       console.log(message.data);
       alert("Create post success")
+      if(message.status===200){
+        updatePost()
+      }
     } catch (error) {
       console.log(error);
     }
   };
+  useEffect(() => {
+    document.body.style.overflow = 'hidden';
+    return () => {
+      document.body.style.overflow = 'auto';
+    };
+  }, []);
   return (
     <div className={`absolute top-0 bottom-0 left-0 right-0 bg-gray-200/50 w-full h-full flex justify-center items-center`}>
       <div className="w-[450px] h-[450px] bg-white rounded-lg  drop-shadow-2xl">
