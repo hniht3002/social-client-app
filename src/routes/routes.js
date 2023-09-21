@@ -11,6 +11,7 @@ import AuthenLayout from "@/layouts/AuthenLayou/AuthenLayout"
 import FriendLayout from "@/layouts/FriendLayout/FriendLayout"
 import Login from "@/pages/AuthenPage/Login/Login"
 import Information from "@/pages/Profile/InformationProfile/InformationProfile"
+import Save from '@/pages/Save/Save'
 const routes = [
     {path: '/', component: Home, layout: MainLayout},
     {path:'/register', component: Register, layout: AuthenLayout},
@@ -20,7 +21,8 @@ const routes = [
     {path:'/group',component: Group, layout: MainLayout },
     {path:'/profile',component: Profile,layout: ProfileLayout},
     {path:'/profile/friend',component:FriendProfile,layout:ProfileLayout},
-    {path:'/profile/information',component:Information,layout:ProfileLayout}
+    {path:'/profile/information',component:Information,layout:ProfileLayout},
+    {path:'/save',component:Save,layout:MainLayout}
 ]
 
 export default routes

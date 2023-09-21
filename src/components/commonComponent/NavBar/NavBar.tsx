@@ -19,7 +19,7 @@ function NavBar(){
             <Link to="/trend">
                 <div className={className}>
                     <BiTrendingUp className={classIcon}/>
-                    <p>Trend</p>
+                    <p>News</p>
                 </div>
             </Link>
             <Link to="/friend">

@@ -1,11 +1,12 @@
 import React, { useEffect, useState } from "react";
-import PostContent from "@/components/Post/PostView/PostContent";
+import PostContent from "@/components/Post/PostView/PostContent/PostContent";
 import PostReact from "@/components/Post/PostView/PostReact/PostReact";
-import PostHeader from "@/components/Post/PostView/PostHeader";
+import PostHeader from "@/components/Post/PostView/PostHeader/PostHeader";
 import PostFilter from "@/components/Profile/ProfilePost/PostFilter";
 import axiosInstance from "@/plugins/axios";
 import Loading from "@/components/commonComponent/Loading/Loading";
 import { IPost } from "@/types/post/post";
+import user from "@/data/userFake";
 function ProfilePost() {
   let [posts, setPosts] = useState<IPost[] | null>(null);
   useEffect(() => {
@@ -35,9 +36,9 @@ function ProfilePost() {
             {posts.map((item) => (
               <li key={item.id}>
                 <div className="w-full mx-auto mt-12">
-                  <PostHeader />
+                  <PostHeader idPost={item.id}/>
                   <PostContent content={item.content} file={item.file} />
-                  <PostReact id={1}/>
+                  <PostReact id={user.id}/>
                 </div>
               </li>
               // Render other data properties here as needed

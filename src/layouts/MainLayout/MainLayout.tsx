@@ -10,7 +10,7 @@ function MainLayout({ children }: { children: ReactNode }) {
       </div>
       <div className="w-full bg-gray-100">
         <div className="flex align-center m-auto w-[75%] gap-4">
-          <div className="w-1/5 fixed left-0 top-16">
+          <div className="w-[18%] fixed left-0 top-16">
             <NavBar />
           </div>
           <div className="w-1/5"></div>

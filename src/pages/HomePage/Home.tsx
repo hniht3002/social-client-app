@@ -1,9 +1,8 @@
 import { registered } from "@/data/GlobalState";
 import PostShow from "@/components/Post/PostCreate/PostShow";
-import PostHeader from "@/components/Post/PostView/PostHeader";
-import PostContent from "@/components/Post/PostView/PostContent";
+import PostHeader from "@/components/Post/PostView/PostHeader/PostHeader";
+import PostContent from "@/components/Post/PostView/PostContent/PostContent";
 import PostReact from "@/components/Post/PostView/PostReact/PostReact";
-import TrendingForYou from "@/components/home/TrendingHagTag/TrendingForYou";
 import PostForm from "@/components/Post/PostCreate/PostForm";
 import { IPost } from "@/types/post/post";
 import { useState, useEffect } from "react";
@@ -50,10 +49,9 @@ function Home() {
                 {post.map((item) => (
                   <li key={item.id}>
                     <div className="w-full mx-auto mt-12 bg-white rounded-lg">
-                      <PostHeader />
+                      <PostHeader idPost={item.id}/>
                       <PostContent content={item.content} file={item.file} />
                       <PostReact id={item.id}/>
-                      {item.id}
                     </div>
                   </li>
                 ))}
@@ -62,9 +60,6 @@ function Home() {
               <div>No post to show</div>
             )}
           </div>
-        </div>
-        <div className="w-[30%]">
-          <TrendingForYou />
         </div>
       </div>
     </div>

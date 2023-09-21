@@ -1,48 +1,66 @@
-import {CiMenuKebab} from 'react-icons/ci'
-function Trending(){
-    return(
-        <div className="text-start w-full p-4 rounded-xl">
-            <h1 className="font-bold text-2xl">What new for today ? </h1>
-            <div>
-                <div className="w-full bg-gray-100 p-2 mt-4 flex justify-between rounded-xl cursor-pointer hover:bg-gray-200 transiton-colors">
-                    <div>
-                        <p className="font-bold">Vinfast</p>
-                        <p className="mt-2">200k posts</p>
-                    </div>
-                    <div className='mt-2'>
-                        <CiMenuKebab/>
-                    </div>
-                </div>
-                <div className="w-full bg-gray-100 p-2 mt-4 flex justify-between rounded-xl cursor-pointer hover:bg-gray-200 transiton-colors">
-                    <div>
-                        <p className="font-bold">Vinfast</p>
-                        <p className="mt-2">200k posts</p>
-                    </div>
-                    <div className='mt-2'>
-                        <CiMenuKebab/>
-                    </div>
-                </div>
-                <div className="w-full bg-gray-100 p-2 mt-4 flex justify-between rounded-xl cursor-pointer hover:bg-gray-200 transiton-colors">
-                    <div>
-                        <p className="font-bold">Vinfast</p>
-                        <p className="mt-2">200k posts</p>
-                    </div>
-                    <div className='mt-2'>
-                        <CiMenuKebab/>
-                    </div>
-                </div>
-                <div className="w-full bg-gray-100 p-2 mt-4 flex justify-between rounded-xl cursor-pointer hover:bg-gray-200 transiton-colors">
-                    <div>
-                        <p className="font-bold">Vinfast</p>
-                        <p className="mt-2">200k posts</p>
-                    </div>
-                    <div className='mt-2'>
-                        <CiMenuKebab/>
-                    </div>
-                </div>
-            </div>
+function Trending() {
+  return (
+    <div className="text-start w-full p-4 rounded-xl">
+      <h1 className="font-bold text-2xl">What new for today ? </h1>
+      <div className="w-full h-[350px] overflow-hidden">
+        <img
+          src="https://taimienphi.vn/tmp/cf/aut/anh-gai-xinh-1.jpg"
+          alt=""
+          className="w-full pb-16"
+        />
+      </div>
+      <p className="font-bold mt-2">New president want to VietNam</p>
+        <p className="text-blue-400 hover:text-blue-600 cursor-pointer">
+          Show more
+        </p>
+      <div className="grid grid-cols-3 mt-8 gap-6">
+        <div>
+          <img
+            src="https://taimienphi.vn/tmp/cf/aut/anh-gai-xinh-1.jpg"
+            alt=""
+            className="w-full"
+          />
+          <p className="font-bold mt-2">New president want to VietNam</p>
+          <p className="text-blue-400 hover:text-blue-600 cursor-pointer">
+            Show more
+          </p>
         </div>
-    )
+        <div>
+          <img
+            src="https://taimienphi.vn/tmp/cf/aut/anh-gai-xinh-1.jpg"
+            alt=""
+            className="w-full"
+          />
+          <p className="font-bold mt-2">New president want to VietNam</p>
+          <p className="text-blue-400 hover:text-blue-600 cursor-pointer">
+            Show more
+          </p>
+        </div>
+        <div>
+          <img
+            src="https://taimienphi.vn/tmp/cf/aut/anh-gai-xinh-1.jpg"
+            alt=""
+            className="w-full"
+          />
+          <p className="font-bold mt-2">New president want to VietNam</p>
+          <p className="text-blue-400 hover:text-blue-600 cursor-pointer">
+            Show more
+          </p>
+        </div>
+        <div>
+          <img
+            src="https://taimienphi.vn/tmp/cf/aut/anh-gai-xinh-1.jpg"
+            alt=""
+            className="w-full"
+          />
+          <p className="font-bold mt-2">New president want to VietNam</p>
+          <p className="text-blue-400 hover:text-blue-600 cursor-pointer">
+            Show more
+          </p>
+        </div>
+      </div>
+    </div>
+  );
 }
 
-export default Trending
+export default Trending;

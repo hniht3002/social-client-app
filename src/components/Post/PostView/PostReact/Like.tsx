@@ -8,21 +8,21 @@ type IProp = {
 };
 const Like: React.FC<IProp> = (props) => {
   const [like, setLike] = useState<ILike[]>();
-  const [likeUI, setLikeUI] = useState<boolean>();
+  const [likeUI, setLikeUI] = useState<boolean>(false);
+  const getLikeData = async () => {
+    try {
+      const likeData = await axiosInstance.get(`/get-like-post/${props.idPost}`);
+      setLike(likeData.data.data);
+      likeData.data.data.forEach((item: ILike) => {
+        if (user.id === item.idUser) {
+          setLikeUI(true);
+        }
+      });
+    } catch (error) {
+      console.log(error);
+    }
+  };
   useEffect(() => {
-    const getLikeData = async () => {
-      try {
-        const likeData = await axiosInstance.get(`/get-like-post/${props.idPost}`);
-        setLike(likeData.data.data);
-        likeData.data.data.forEach((item: ILike) => {
-          if (user.id === item.idUser) {
-            setLikeUI(true);
-          }
-        });
-      } catch (error) {
-        console.log(error);
-      }
-    };
     getLikeData();
   }, []);
   const likeAction = async () => {
@@ -32,6 +32,7 @@ const Like: React.FC<IProp> = (props) => {
         idPost: props.idPost,
       });
       console.log(like.data);
+      getLikeData()
     } catch (error) {
       console.log(error);
     }
@@ -42,6 +43,7 @@ const Like: React.FC<IProp> = (props) => {
         data: { idUser: user.id, idPost: props.idPost },
       });
       console.log(unlike.data);
+      getLikeData()
     } catch (error) {
       console.log(error);
     }
@@ -58,12 +60,11 @@ const Like: React.FC<IProp> = (props) => {
   };
   return (
     <div>
-      {likeUI}
       <div className="flex cursor-pointer" onClick={handleLike}>
         <div className={`mt-1 ${likeUI ? "text-blue-500" : ""}`}>
           <AiOutlineLike />
         </div>
-        <p className={`ml-2 ${likeUI ? "text-blue-500" : ""}`}>Thích</p>
+        <p className={`ml-2 ${likeUI ? "text-blue-500" : ""}`}><p>{like?.length}</p></p>
       </div>
     </div>
   );
