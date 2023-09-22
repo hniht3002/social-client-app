@@ -4,7 +4,7 @@ function RegisterForm() {
   const [data, setData] = React.useState({
     name: "",
     email: "",
-    psw: "",
+    password: "",
     sec_psw: "",
   });
 
@@ -19,84 +19,122 @@ function RegisterForm() {
   };
 
   return (
-    <div className="border-2 border-black bg-white text-left rounded-lg overflow-hidden">
-      <form className="flex flex-col gap-2 p-4 w-full" method="post">
-        <h2 className="font-bold">Register</h2>
-        <p>Join with us!</p>
-
-        <input
-          className="p-1 border-2 border-black"
-          type="text"
-          placeholder="name"
-          value={data.name}
-          onChange={(e) => {
-            setData({
-              name: e.target.value,
-              email: data.email,
-              psw: data.psw,
-              sec_psw: data.sec_psw,
-            });
-          }}
-        />
-
-        <input
-          className="p-1 border-2 border-black"
-          type="text"
-          placeholder="email"
-          value={data.email}
-          onChange={(e) => {
-            setData({
-              name: data.name,
-              email: e.target.value,
-              psw: data.psw,
-              sec_psw: data.sec_psw,
-            });
-          }}
-        />
-
-        <input
-          className="p-1 border-2 border-black"
-          type="text"
-          id=""
-          placeholder="password"
-          name="psw"
-          value={data.psw}
-          onChange={(e) => {
-            setData({
-              name: data.name,
-              email: data.email,
-              psw: e.target.value,
-              sec_psw: data.sec_psw,
-            });
-          }}
-        />
-
-        <input
-          className="p-1 border-2 border-black"
-          type="text"
-          id=""
-          placeholder="confirm password"
-          name="sec_psw"
-          value={data.sec_psw}
-          onChange={(e) => {
-            setData({
-              name: data.name,
-              email: data.email,
-              psw: data.psw,
-              sec_psw: e.target.value,
-            });
-          }}
-        />
-
-        <button
-          className="w-1/2 mx-auto rounded-lg bg-blue-400 text-white p-2"
-          onClick={(e) => {
-            handleSubmit(e);
-          }}
-        >
-          Register
-        </button>
-      </form>
+    <div>
+      <section className="bg-gray-50 dark:bg-gray-900">
+        <div className="flex flex-col items-center justify-center px-6 py-8 mx-auto md:h-screen lg:py-0">
+          <div className="w-full bg-white rounded-lg shadow dark:border md:mt-0 sm:max-w-md xl:p-0 dark:bg-gray-800 dark:border-gray-700">
+            <div className="p-6 space-y-4 md:space-y-6 sm:p-8">
+              <h1 className="text-xl font-bold leading-tight tracking-tight text-gray-900 md:text-2xl dark:text-white">
+                Register
+              </h1>
+              <form className="space-y-4 md:space-y-6" action="#">
+                <div>
+                  <label className="block mb-2 text-sm font-medium text-gray-900 dark:text-white text-left">
+                    Your email
+                  </label>
+                  <input
+                    type="text"
+                    name="email"
+                    id="email"
+                    className="bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+                    placeholder="name@company.com"
+                    value={data.email}
+                    onChange={(e) => {
+                      setData({
+                        name: data.name,
+                        email: e.target.value,
+                        password: data.password,
+                        sec_psw: data.sec_psw,
+                      });
+                    }}
+                  />
+                </div>
+                <div>
+                  <label className="block mb-2 text-sm font-medium text-gray-900 dark:text-white text-left">
+                    Your name
+                  </label>
+                  <input
+                    type="text"
+                    name="email"
+                    id="name"
+                    className="bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+                    placeholder="name@company.com"
+                    value={data.name}
+                    onChange={(e) => {
+                      setData({
+                        name: e.target.value,
+                        email: data.email,
+                        password: data.password,
+                        sec_psw: data.sec_psw,
+                      });
+                    }}
+                  />
+                </div>
+                <div>
+                  <label className="block mb-2 text-sm font-medium text-gray-900 dark:text-white text-left">
+                    Password
+                  </label>
+                  <input
+                    type="password"
+                    name="password"
+                    id="password"
+                    placeholder="••••••••"
+                    className="bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+                    value={data.password}
+                    onChange={(e) => {
+                      setData({
+                        name: data.name,
+                        email: data.email,
+                        password: e.target.value,
+                        sec_psw: data.sec_psw,
+                      });
+                    }}
+                  />
+                </div>
+                <div>
+                  <label className="block mb-2 text-sm font-medium text-gray-900 dark:text-white text-left">
+                    Confirm Password
+                  </label>
+                  <input
+                    type="password"
+                    name="sec_password"
+                    id="sec_password"
+                    placeholder="••••••••"
+                    className="bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+                    value={data.sec_psw}
+                    onChange={(e) => {
+                      setData({
+                        name: data.name,
+                        email: data.email,
+                        password: data.password,
+                        sec_psw: e.target.value,
+                      });
+                    }}
+                  />
+                </div>
+                <button
+                  onClick={(e) => {
+                    handleSubmit(e);
+                  }}
+                  type="submit"
+                  className="w-full text-white bg-primary-600 hover:bg-primary-700 focus:ring-4 focus:outline-none focus:ring-primary-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-primary-600 dark:hover:bg-primary-700 dark:focus:ring-primary-800"
+                >
+                  Register
+                </button>
+                <p className="text-sm font-light text-gray-500 dark:text-gray-400">
+                  Don’t have an account yet?{" "}
+                  <a
+                    href="#"
+                    className="font-medium text-primary-600 hover:underline dark:text-primary-500"
+                  >
+                    Sign up
+                  </a>
+                </p>
+              </form>
+            </div>
+          </div>
+        </div>
+      </section>
     </div>
   );
 }
