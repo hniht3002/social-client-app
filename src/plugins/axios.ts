@@ -1,13 +1,16 @@
 import axios from 'axios';
+import { configureStore } from "@reduxjs/toolkit";
 
-const base_API_URL =  process.env.REACT_APP_API_URL
+import store from '@/redux/store';
 
-console.log(base_API_URL);
+const state = store.getState()
+
+const base_API_URL =  process.env.REACT_APP_API_URL;
 
 const axiosInstance = axios.create({
   baseURL: base_API_URL,
   headers: {
-    authorization: "null"
+    authorization: state.counter.value.data.token
   },
 });
 
