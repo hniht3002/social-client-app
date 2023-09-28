@@ -8,7 +8,7 @@ function MainLayout({ children }: { children: ReactNode }) {
       <div className="header sticky top-0 ">
         <Header />
       </div>
-      <div className="w-full bg-gray-100">
+      <div className="w-full">
         <div className="flex align-center m-auto w-[75%] gap-4">
           <div className="w-[18%] fixed left-0 top-16">
             <NavBar />

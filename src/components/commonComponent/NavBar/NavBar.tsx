@@ -1,7 +1,7 @@
 import {AiOutlineHome} from 'react-icons/ai'
 import {BiTrendingUp} from 'react-icons/bi'
 import {FaUserFriends} from 'react-icons/fa'
-import {HiOutlineUserGroup} from 'react-icons/hi'
+// import {HiOutlineUserGroup} from 'react-icons/hi'
 import {AiOutlineSave} from 'react-icons/ai'
 import { Route, Routes, Link } from 'react-router-dom'
 function NavBar(){
@@ -28,12 +28,12 @@ function NavBar(){
                     <p>Friend</p>
                 </div>
             </Link>
-            <Link to="/group">
+            {/* <Link to="/group">
                 <div className={className}>
                     <HiOutlineUserGroup className={classIcon}/>
                     <p>Group</p>
                 </div>
-            </Link>
+            </Link> */}
             <Link to="/save">
                 <div className={className}>
                     <AiOutlineSave className={classIcon}/>

@@ -7,7 +7,7 @@ const UserView = () => {
         <div className="flex">
           <img src={user.avata} alt="" className="w-10 h-10 rounded-full" />
           <div className="ml-4">
-            <p className="font-bold">{user.name}</p>
+            <p className="font-bold mt-[8px]">{user.name}</p>
           </div>
         </div>
       </Link>

@@ -3,9 +3,10 @@ import { IFriend } from "@/types/friend/friend";
 import axiosInstance from "@/plugins/axios";
 import Loading from "@/components/commonComponent/Loading/Loading";
 import { useState, useEffect } from "react";
+import user from "@/data/userFake";
 
 function FriendAll() {
-  const id = 1;
+  const id = user.id;
   const [friend, setFriend] = useState<IFriend[]>();
   const [loading, setLoading] = useState(true);
 

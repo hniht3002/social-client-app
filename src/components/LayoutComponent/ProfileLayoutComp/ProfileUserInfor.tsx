@@ -1,4 +1,22 @@
+import axiosInstance from "@/plugins/axios";
+import user from "@/data/userFake";
+import { useEffect, useState } from "react";
+import { IFriend } from "@/types/friend/friend";
 function ProfileUserInfor() {
+  const [friend, setFriend] = useState<IFriend[]>();
+  useEffect(() => {
+    const getData = async () => {
+      try {
+        const friendData = await axiosInstance.get(
+          `/get-all-friend?id=${user.id}`
+        );
+        setFriend(friendData.data.friends);
+      } catch (error) {
+        console.log(error);
+      }
+    };
+    getData();
+  }, []);
   return (
     <div className="w-full">
       <div className="relative z-20 h-96">
@@ -20,7 +38,7 @@ function ProfileUserInfor() {
       <div className="text-center w-full mt-32">
         <div>
           <p className="font-bold text-xl">Đoàn Văn Hiệp</p>
-          <p>173 Friend</p>
+          <p>{friend?.length} friends</p>
         </div>
       </div>
     </div>

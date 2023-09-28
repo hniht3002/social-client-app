@@ -26,6 +26,9 @@ const PostHeader: React.FC<IProp> = (prop) => {
   const savePost = () => {
     setSave(true);
   };
+  const report =()=>{
+    alert("Report was received! We will check this post and give you back.")
+  }
   const handleMenu = () => {
     setShowMenu(!showMenu);
   };
@@ -33,7 +36,7 @@ const PostHeader: React.FC<IProp> = (prop) => {
     <div className="flex justify-between w-[90%] mx-auto pt-6">
       <UserView />
       <div className="flex justify-around mt-4">
-        <div className="mr-2 cursor-pointer relative">
+        <div className="mr-2 cursor-pointer">
           <AiOutlineMenu onClick={handleMenu} />
           {showMenu && (
             <div className="absolute w-32 text-start bg-white shadow-lg mt-2 p-2 rounded-lg">
@@ -43,7 +46,7 @@ const PostHeader: React.FC<IProp> = (prop) => {
               >
                 Save Post
               </p>
-              <p className="cursor-pointer hover:bg-gray-200 p-1 rounded-md">
+              <p className="cursor-pointer hover:bg-gray-200 p-1 rounded-md" onClick={report}>
                 Report
               </p>
             </div>

@@ -20,13 +20,13 @@ const Save = () =>{
     },[])
     return (
         <div>
-          <h1>Save post for you</h1>
-          <div>
+          <h1 className='mt-8 font-bold text-2xl'>Save post for you</h1>
+          <div className='w-[70%] mx-auto'>
             {savePost ? (
               <div>
                 {savePost.map((post:IPost) => (
                   <div key={post.id}>
-                    <div className="w-full mx-auto mt-12 bg-white rounded-lg">
+                    <div className="w-full mx-auto mt-12 bg-white rounded-lg shadow-[0px_0px_15px_15px] shadow-gray-100">
                       <PostHeader idPost={post.id} />
                       <PostContent content={post.content} file={post.file} />
                       <PostReact id={post.id} />

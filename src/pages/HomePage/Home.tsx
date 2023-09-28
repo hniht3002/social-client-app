@@ -48,7 +48,7 @@ function Home() {
               <ul>
                 {post.map((item) => (
                   <li key={item.id}>
-                    <div className="w-full mx-auto mt-12 bg-white rounded-lg">
+                    <div className="w-full mx-auto mt-12 bg-white rounded-lg shadow-[0px_0px_15px_15px] shadow-gray-100">
                       <PostHeader idPost={item.id}/>
                       <PostContent content={item.content} file={item.file} />
                       <PostReact id={item.id}/>

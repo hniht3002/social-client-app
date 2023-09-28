@@ -1,6 +1,5 @@
 import Header from "@/components/commonComponent/Header/Header";
 import ProfileUserInfor from "@/components/LayoutComponent/ProfileLayoutComp/ProfileUserInfor";
-import NavProfile from "@/components/LayoutComponent/NavProfile/NavProfile";
 import { ReactNode } from "react";
 function ProfileLayout({ children }: { children: ReactNode }) {
   return (
@@ -12,10 +11,7 @@ function ProfileLayout({ children }: { children: ReactNode }) {
         <div>
           <ProfileUserInfor />
         </div>
-        <div className="mt-16">
-            <NavProfile/>
-        </div>
-        {children}
+        <div className="w-full h-full mt-8">{children}</div>
       </div>
     </div>
   );
