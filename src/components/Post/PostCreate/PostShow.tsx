@@ -19,25 +19,25 @@ function PostShow() {
             <img
               src="/homeImage/image.png"
               alt="Post icon"
-              className="w-8 h-8"
+              className="w-8 h-8 sm:h-6 sm:w-6 mt-1"
             />
             <div>
               <label htmlFor="image" className="cursor-pointer">
-                <p className="mt-1">Image</p>
+                <p className="mt-1 sm:hidden">Image</p>
               </label>
             </div>
           </div>
           <div className={shareClass}>
-            <img src="/homeImage/video.png" alt="Video" className="w-8 h-8" />
-            <p className="mt-1 mr-2">Video</p>
+            <img src="/homeImage/video.png" alt="Video" className="w-8 h-8 sm:h-6 sm:w-6 mt-1" />
+            <p className="mt-1 ml-2 sm:hidden">Video</p>
           </div>
           <div className={shareClass}>
             <img
               src="/homeImage/emotion.png"
               alt="Emotion"
-              className="w-8 h-8"
+              className="w-8 h-8 sm:h-6 sm:w-6 mt-1"
             />
-            <p className="mt-1 ml-2">Emoji</p>
+            <p className="mt-1 ml-2 sm:hidden">Emoji</p>
           </div>
         </div>
       </div>

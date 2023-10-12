@@ -19,7 +19,6 @@ const PostReact: React.FC<IProp> = (props) => {
       try {
         const commentData = await axiosInstance.get(`/get-comment/${props.id}`);
         setComment(commentData.data.comments);
-        console.log(commentData.data.comments);
       } catch (error) {
         console.log(error);
       }
@@ -33,7 +32,6 @@ const PostReact: React.FC<IProp> = (props) => {
         postId: props.id,
         content: commentInput,
       });
-      console.log(createComment.data);
       setCommentInput("");
       if (update === false) {
         setUpdate(true);

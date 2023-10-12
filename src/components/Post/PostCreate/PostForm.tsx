@@ -68,14 +68,14 @@ const PostForm:React.FC<any> = ({handleShow,updatePost}) => {
           </div>
           <div className="h-3/5">
             <label htmlFor="file" className="p-2 h-full">
-              <div className="w-4/5 h-full mx-auto rounded-lg align-center bg-gray-200 outline-none cursor-pointer flex justify-center items-center relative">
+              <div className="w-4/5 h-full mx-auto rounded-lg align-center bg-gray-200 outline-none cursor-pointer flex justify-center items-center relative overflow-y-auto">
                 <BsFileEarmarkImage className="w-8 h-8" />
                 <p className="ml-2 text-2xl"> Add image/video</p>
                 {imageUrl && (
                   <img
                     src={imageUrl}
                     alt="Hình ảnh đã chọn"
-                    className="absolute bg-gray-200 top-0 left-0 h-full w-full overflow-auto rounded-lg"
+                    className="absolute bg-gray-200 top-0 left-0 w-full overflow-scroll rounded-lg"
                   />
                 )}
               </div>

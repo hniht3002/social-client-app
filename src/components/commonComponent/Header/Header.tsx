@@ -18,7 +18,7 @@ function Header() {
             <p className="text-blue-400 font-bold mt-1">ShareHanu</p>
           </div>
         </Link>
-        <div className="search w-1/2">
+        <div className="search w-1/2 sm:hidden">
           <div className="relative mt-1">
             <input
               type="text"

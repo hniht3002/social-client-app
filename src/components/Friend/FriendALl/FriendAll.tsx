@@ -22,6 +22,7 @@ function FriendAll() {
     };
     getData();
   }, []);
+  
   const newList =(id:number)=>{
     if(friend){
       const updatedFriendList = friend.filter((item) => item.id !== id);
@@ -41,10 +42,10 @@ function FriendAll() {
           <ul className="grid grid-cols-3 gap-2">
             {friend.map((item) => (
               <li key={item.id}>
-                <div className="w-full mx-auto mt-12">
+                <div className="w-full mx-auto mt-6">
                   <FriendCard
                     id={item.id}
-                    image={`http://localhost:3001/avata/${item.id}.png`}
+                    image={`http://localhost:3001/avata/${item.idUserSend}.png`}
                     name="Anh thu"
                     onUpdateListFriend={()=>newList(item.id)}
                   />

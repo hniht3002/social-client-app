@@ -10,11 +10,11 @@ const FriendLayout = ({ children }: { children: ReactNode }) => {
       <div className="header sticky top-0 ">
         <Header />
       </div>
-      <div className="flex align-center m-auto w-[85%] gap-4 h-screen">
-        <div className="w-1/5 fixed left-0 top-16">
+      <div className="flex align-center m-auto w-[90%] gap-2 h-screen">
+        <div className="w-[18%] fixed left-0 top-16">
           <NavBar />
         </div>
-        <div className="w-1/5"></div>
+        <div className="w-[18%]"></div>
         <div className="main basis-4/5 flex mt-12">
           <div className="basis-4/5">
             <div className="flex justify-around">
@@ -26,7 +26,7 @@ const FriendLayout = ({ children }: { children: ReactNode }) => {
             </div>
             <div>{children}</div>
           </div>
-          <div className="basis-1/4">
+          <div className="basis-1/5">
             <FriendSuggestion />
             <div>
               <SearchFriend />

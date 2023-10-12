@@ -51,11 +51,11 @@ const SearchFriend = () => {
           <ul className="w-full drop-shadow-xl bg-white pt-8 rounded-xl">
             {list.map((item) => (
               <li key={item.id}>
-                <div className=" flex w-3/6 p-2 cursor-pointer">
+                <div className=" flex w-5/6 p-2 cursor-pointer gap-4">
                   <div className="mt-2">
                     <AiOutlineSearch />
                   </div>
-                  <p className="mt-[4px] ml-4">{item.name}</p>
+                  <p className="mt-[4px] ml-4 w-full">{item.name}</p>
                 </div>
               </li>
             ))}

@@ -36,8 +36,8 @@ function Home() {
   }
   return (
     <div className="mt-12">
-      <div className="flex gap-4">
-        <div className="w-[70%]">
+      <div className="flex gap-4 sm:block">
+        <div className="w-[70%] sm:w-full">
           <div onClick={handleShow}>
             <PostShow />
           </div>
