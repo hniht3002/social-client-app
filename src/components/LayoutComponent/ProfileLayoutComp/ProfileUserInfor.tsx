@@ -19,8 +19,8 @@ function ProfileUserInfor() {
   }, []);
   return (
     <div className="w-full">
-      <div className="relative z-20 h-96">
-        <div className="overflow-hidden h-full">
+      <div className="relative z-20 h-96 sm:h-24">
+        <div className="overflow-hidden h-full sm:hidden">
           <img
             src="https://kynguyenlamdep.com/wp-content/uploads/2022/06/xinh-dep-nhe-nhang-voi-mai-toc-layer.jpg"
             alt="Ảnh bìa"

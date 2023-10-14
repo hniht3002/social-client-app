@@ -29,7 +29,7 @@ function Profile() {
   return (
     <div className="w-full">
       <div className="w-[70%] mx-auto bg-gray-50 h-[1px]"></div>
-      <div className="flex w-[70%] gap-4 mx-auto">
+      <div className="flex w-[70%] gap-4 mx-auto sm:block sm:w-[90%]">
         <div className="basis-2/5">
           <UserInformation />
         </div>

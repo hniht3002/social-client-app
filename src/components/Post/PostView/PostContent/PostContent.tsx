@@ -10,7 +10,7 @@ const PostContent:React.FC<IPost> = (props)=>{
                 {props.content}
             </p>
             <div className="">
-                <img src={`http://localhost:3001/postImage/${props.file}`} alt="" className="mt-8 w-[70%] mx-auto"/>
+                <img loading='lazy' src={`http://localhost:3001/postImage/${props.file}`} alt="" className="mt-8 w-[70%] mx-auto"/>
             </div>
         </div>
     )

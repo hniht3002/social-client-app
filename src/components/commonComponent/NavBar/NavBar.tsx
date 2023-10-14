@@ -8,13 +8,7 @@ import { Route, Routes, Link, useLocation } from 'react-router-dom';
 
 function NavBar() {
   const [activeRoute, setActiveRoute] = useState(''); // Sử dụng state để theo dõi route hiện tại
-  const [isMobile, setIsMobile] = useState(false)
   const location = useLocation(); // Sử dụng useLocation từ react-router-dom để lấy thông tin về route hiện tại
-  const handleResponsive = ()=>{
-    setIsMobile(!isMobile)
-  }
-  const classNav ='w-full pt-12 pb-4 border-r-2 border-gray-200 h-[100vh] ease-in-out duration-300 sm:hidden xl:hidden' 
-  const classNavMobile = 'w-full pt-12 pb-4 border-r-2 border-gray-200 h-[100vh] ease-in-out duration-300 sm:block xl:block'
   const className = 'grid grid-cols-5 ml-2 mt-8 font-bold text-xl cursor-pointer hover:bg-gray-100 hover:text-blue-600 p-2 rounded-lg fade-out pl-6';
   const classIcon = 'mt-1';
 
@@ -25,10 +19,7 @@ function NavBar() {
 
   return (
    <div className=''>
-    <div className='hidden bg-none sm:block xl:block' onClick={handleResponsive}>
-      <AiOutlineMenu/>
-    </div>
-     <div className={isMobile ? classNavMobile : classNav}>
+     <div className="w-full pt-12 pb-4 border-r-2 border-gray-200 h-[100vh] ease-in-out duration-300 sm:hidden xl:hidden">
       <nav>
         <Link to='/' onClick={() => setActiveRoute('/')}>
           <div className={`${className} ${isRouteActive('/')}`}>

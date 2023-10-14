@@ -4,21 +4,25 @@ import { PiMagnifyingGlassDuotone } from "react-icons/pi";
 import user from "@/data/userFake";
 import Tippy from "@tippyjs/react/headless";
 import { Route, Routes, Link } from "react-router-dom";
+import NavBarMobile from "../NavBar/NavBarMobile";
 function Header() {
   return (
     <div className="wrapper w-full pb-1 shadow-xl shadow-gray-200 bg-white">
-      <div className="flex justify-between w-5/6 m-auto h-14 items-center">
+      <div className="flex justify-between w-5/6 m-auto h-14 items-center gap-4">
         <Link to="/">
-          <div className="logo flex gap-2">
+          <div className="logo flex gap-2 sm:block sm:w-8 sm:h-8">
             <img
               src="https://img.freepik.com/premium-vector/round-twitter-logo-isolated-white-background_469489-899.jpg"
               alt="Logo"
               className="w-8 h-8"
             />
-            <p className="text-blue-400 font-bold mt-1">ShareHanu</p>
+            <p className="text-blue-400 font-bold mt-1 sm:hidden">ShareHanu</p>
           </div>
         </Link>
-        <div className="search w-1/2 sm:hidden">
+        <div className="">
+          <NavBarMobile/>
+        </div>
+        <div className="search w-1/2 sm:hidden sm:w-1/3">
           <div className="relative mt-1">
             <input
               type="text"

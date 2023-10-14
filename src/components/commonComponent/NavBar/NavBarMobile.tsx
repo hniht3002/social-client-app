@@ -9,39 +9,35 @@ function NavBarMobile() {
   const [activeRoute, setActiveRoute] = useState(''); // Sử dụng state để theo dõi route hiện tại
   const location = useLocation(); // Sử dụng useLocation từ react-router-dom để lấy thông tin về route hiện tại
 
-  const className = 'grid grid-cols-5 ml-2 mt-8 font-bold text-xl cursor-pointer hover:bg-gray-100 hover:text-blue-600 p-2 rounded-lg fade-out pl-6';
-  const classIcon = 'mt-1';
+  const className = 'p-2 font-bold text-xl cursor-pointer rounded-lg fade-out';
+  const classIcon = 'mt-0 mx-auto';
 
   // Kiểm tra xem route hiện tại có phải là route đã được chọn hay không
   const isRouteActive = (route:any) => {
-    return location.pathname === route ? 'text-blue-500 bg-gray-200' : '';
+    return location.pathname === route ? 'text-blue-500 bg-gray-100' : '';
   };
 
   return (
-    <div className='w-full pt-12 pb-4 border-r-2 border-gray-200 h-[100vh] sm:hidden'>
-      <nav>
+    <div className='w-full hidden sm:block text-center'>
+      <nav className='flex gap-2'>
         <Link to='/' onClick={() => setActiveRoute('/')}>
           <div className={`${className} ${isRouteActive('/')}`}>
             <AiOutlineHome className={classIcon} />
-            <p>Home</p>
           </div>
         </Link>
         <Link to='/trend' onClick={() => setActiveRoute('/trend')}>
           <div className={`${className} ${isRouteActive('/trend')}`}>
             <BiTrendingUp className={classIcon} />
-            <p>News</p>
           </div>
         </Link>
         <Link to='/friend' onClick={() => setActiveRoute('/friend')}>
           <div className={`${className} ${isRouteActive('/friend')}`}>
             <FaUserFriends className={classIcon} />
-            <p>Friend</p>
           </div>
         </Link>
         <Link to='/save' onClick={() => setActiveRoute('/save')}>
           <div className={`${className} ${isRouteActive('/save')}`}>
             <AiOutlineSave className={classIcon} />
-            <p>Save</p>
           </div>
         </Link>
       </nav>
