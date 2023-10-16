@@ -7,6 +7,7 @@ import { useState, useEffect } from "react";
 import { IComment } from "@/types/comment/comment";
 import axiosInstance from "@/plugins/axios";
 import { useSelector } from "react-redux/es/hooks/useSelector";
+import getUserById from "@/services/getUserById";
 type IProp = {
   id: number;
 };
@@ -15,11 +16,13 @@ const PostReact: React.FC<IProp> = (props) => {
   const [comment, setComment] = useState<IComment[]>();
   const [commentInput, setCommentInput] = useState<string>();
   const user = useSelector((state:any)=>state.user)
+  console.log(user.value.data.name);
   useEffect(() => {
     const getComment = async () => {
       try {
         const commentData = await axiosInstance.get(`/get-comment/${props.id}`);
         setComment(commentData.data.comments);
+        
       } catch (error) {
         console.log(error);
       }
@@ -29,7 +32,8 @@ const PostReact: React.FC<IProp> = (props) => {
   const postCommment = async () => {
     try {
       const createComment = await axiosInstance.post(`/create-comment`, {
-        userId: user.id,
+        userId: user.value.data.id,
+        userName:user.value.data.name,
         postId: props.id,
         content: commentInput,
       });
@@ -83,9 +87,9 @@ const PostReact: React.FC<IProp> = (props) => {
             {comment.map((item) => (
               <li key={item.id}>
                 <div className="flex w-[90%] mt-6 mx-auto">
-                  <img src={user.avata} alt="" className="w-8 h-8 rounded-full" />
+                  <img src={`http://localhost:3001/avata/${user.value.data.id}.png`} alt="" className="w-8 h-8 rounded-full" />
                   <div className="text-start ml-4 bg-gray-200 p-2 rounded-lg">
-                    <p className="font-semibold">{user.value.data.name}</p>
+                    <p className="font-semibold">{item.userName}</p>
                     <div className="">{item.content}</div>
                   </div>
                 </div>

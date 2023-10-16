@@ -1,20 +1,21 @@
 import { AiOutlineLike } from "react-icons/ai";
-import user from "@/data/userFake";
 import axiosInstance from "@/plugins/axios";
 import React, { useState, useEffect } from "react";
 import ILike from "@/types/post/like";
+import { useSelector } from "react-redux";
 type IProp = {
   idPost: number;
 };
 const Like: React.FC<IProp> = (props) => {
   const [like, setLike] = useState<ILike[]>();
   const [likeUI, setLikeUI] = useState<boolean>(false);
+  const user = useSelector((state:any)=>state.user)
   const getLikeData = async () => {
     try {
       const likeData = await axiosInstance.get(`/get-like-post/${props.idPost}`);
       setLike(likeData.data.data);
       likeData.data.data.forEach((item: ILike) => {
-        if (user.id === item.idUser) {
+        if (user.value.data.value === item.idUser) {
           setLikeUI(true);
         }
       });
@@ -28,7 +29,7 @@ const Like: React.FC<IProp> = (props) => {
   const likeAction = async () => {
     try {
       const like = await axiosInstance.post("/create-like", {
-        idUser: user.id,
+        idUser: user.value.data.value,
         idPost: props.idPost,
       });
       console.log(like.data);
@@ -40,7 +41,7 @@ const Like: React.FC<IProp> = (props) => {
   const unLike = async () => {
     try {
       const unlike = await axiosInstance.delete("/delete-like", {
-        data: { idUser: user.id, idPost: props.idPost },
+        data: { idUser: user.value.data.value, idPost: props.idPost },
       });
       console.log(unlike.data);
       getLikeData()
