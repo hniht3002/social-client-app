@@ -5,8 +5,8 @@ import Comment from "./Comment";
 import { FaTelegramPlane } from "react-icons/fa";
 import { useState, useEffect } from "react";
 import { IComment } from "@/types/comment/comment";
-import user from "@/data/userFake";
 import axiosInstance from "@/plugins/axios";
+import { useSelector } from "react-redux/es/hooks/useSelector";
 type IProp = {
   id: number;
 };
@@ -14,6 +14,7 @@ const PostReact: React.FC<IProp> = (props) => {
   const [update, setUpdate] = useState<boolean>(false);
   const [comment, setComment] = useState<IComment[]>();
   const [commentInput, setCommentInput] = useState<string>();
+  const user = useSelector((state:any)=>state.user)
   useEffect(() => {
     const getComment = async () => {
       try {
@@ -84,7 +85,7 @@ const PostReact: React.FC<IProp> = (props) => {
                 <div className="flex w-[90%] mt-6 mx-auto">
                   <img src={user.avata} alt="" className="w-8 h-8 rounded-full" />
                   <div className="text-start ml-4 bg-gray-200 p-2 rounded-lg">
-                    <p className="font-semibold">{user.name}</p>
+                    <p className="font-semibold">{user.value.data.name}</p>
                     <div className="">{item.content}</div>
                   </div>
                 </div>

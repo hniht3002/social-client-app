@@ -1,8 +1,9 @@
 import React from "react";
 import axiosInstance from "@/plugins/axios";
 import { useDispatch, useSelector } from "react-redux";
-import { setUser } from "@/redux/slices/countSlices";
+import { setUser } from "@/redux/slices/userSlice";
 import { Link, Route, Router, Routes, useNavigate } from "react-router-dom";
+import { setToken,getToken } from "@/services/handleToken";
 function LoginForm() {
   const [data, setData] = React.useState({
     email: "",
@@ -10,14 +11,16 @@ function LoginForm() {
   });
 
   const dispatch = useDispatch();
-  const newUser = useSelector((state: any) => state.counter.value);
+  const newUser = useSelector((state:any)=>state.user);
   const navigate = useNavigate()
 
   const handleSubmit = async (e: React.FormEvent) => {
     try {
       const User: any = await axiosInstance.post("/login", data);
       dispatch(setUser(User));
-      console.log(User);
+      setToken(User.data.token)
+      console.log(getToken());
+      
       if(User.status===200){
         navigate('/')
       }
@@ -25,7 +28,7 @@ function LoginForm() {
       console.log(error);
     }
   };
-
+  
   return (
     <div>
       <section className="bg-gray-50 dark:bg-gray-900">
