@@ -15,7 +15,7 @@ const Like: React.FC<IProp> = (props) => {
       const likeData = await axiosInstance.get(`/get-like-post/${props.idPost}`);
       setLike(likeData.data.data);
       likeData.data.data.forEach((item: ILike) => {
-        if (user.value.data.value === item.idUser) {
+        if (user.value.data.id === item.idUser) {
           setLikeUI(true);
         }
       });
@@ -29,10 +29,9 @@ const Like: React.FC<IProp> = (props) => {
   const likeAction = async () => {
     try {
       const like = await axiosInstance.post("/create-like", {
-        idUser: user.value.data.value,
+        idUser: user.value.data.id,
         idPost: props.idPost,
       });
-      console.log(like.data);
       getLikeData()
     } catch (error) {
       console.log(error);
@@ -41,7 +40,7 @@ const Like: React.FC<IProp> = (props) => {
   const unLike = async () => {
     try {
       const unlike = await axiosInstance.delete("/delete-like", {
-        data: { idUser: user.value.data.value, idPost: props.idPost },
+        data: { idUser: user.value.data.id, idPost: props.idPost },
       });
       console.log(unlike.data);
       getLikeData()

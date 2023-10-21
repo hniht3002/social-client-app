@@ -17,7 +17,7 @@ const routes = [
   { path: "/trend", component: Trend, layout: MainLayout },
   { path: "/friend", component: Friend, layout: FriendLayout },
   { path: "/group", component: Group, layout: MainLayout },
-  { path: "/profile", component: Profile, layout: ProfileLayout },
+  { path: "/profile/:id", component: Profile, layout: ProfileLayout },
   { path: "/save", component: Save, layout: MainLayout },
 ];
 

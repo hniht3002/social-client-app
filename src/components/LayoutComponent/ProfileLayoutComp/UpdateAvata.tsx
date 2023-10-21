@@ -1,18 +1,19 @@
 import { CiCircleRemove } from "react-icons/ci";
 import { BsFileEarmarkImage } from "react-icons/bs";
-import React, { useState,useEffect } from "react";
-import UserView from "@/components/commonComponent/userView/UserView";
+import React, {useState,useEffect} from 'react'
+import { useSelector } from "react-redux/es/hooks/useSelector";
 import axiosInstance from "@/plugins/axios";
-import { useSelector } from "react-redux";
-const PostForm:React.FC<any> = ({handleShow,updatePost}) => {
+const UpdateAvata:React.FC<any> = ({handleShow,updateAvata}) => {
   const [imageUrl, setImageUrl] = useState<string>();
   const [file, setFile] = useState<File | null>();
-  const [content, setContent] = useState<string>("");
+    const user = useSelector((state:any)=>state.user)
   const handleUpload = (e: React.ChangeEvent<HTMLInputElement>) => {
     if (e.currentTarget.files) {
       const file = e.currentTarget.files[0];
-      setFile(file);
       const fileReader = new FileReader();
+      const newFileName = user.value.data.id + '.png'
+      const renamedFile = new File([file], newFileName, { type: file.type });
+      setFile(renamedFile);
       fileReader.onload = (e) => {
         if (typeof e.target?.result == "string") {
           setImageUrl(e.target?.result);
@@ -23,19 +24,16 @@ const PostForm:React.FC<any> = ({handleShow,updatePost}) => {
       alert("Need to select a file");
     }
   };
-  const user = useSelector((state:any)=> state.user)
   const formData = new FormData();
-  formData.append("userId", user.value.data.id);
-  formData.append("content", content);
   if (file) {
     formData.append("file", file);
   }
   const handleSubmit = async () => {
     try {
-      const message = await axiosInstance.post("/create-post", formData);
-      alert("Create post success")
+      const message = await axiosInstance.put("/user/update-avata", formData);
+      alert("Update success")
       if(message.status===200){
-        updatePost()
+        updateAvata()
       }
     } catch (error) {
       console.log(error);
@@ -50,23 +48,12 @@ const PostForm:React.FC<any> = ({handleShow,updatePost}) => {
   return (
     <div className={`absolute top-0 bottom-0 left-0 right-0 bg-gray-200/50 w-full h-full flex justify-center items-center`}>
       <div className="w-[450px] h-[450px] bg-white rounded-lg  drop-shadow-2xl">
-        <div className="w-full flex justify-around mt-2 pt-4 border-b-[1px] pb-2 border-gray-200">
+        <div className="w-full flex justify-around mt-2 pt-4 border-b-[1px] pb-4 border-gray-200">
           <div></div>
-          <h1 className="font-bold text-xl">Create Post</h1>
+          <h1 className="font-bold text-xl">Pick your avata</h1>
           <CiCircleRemove className="mt-2 font-bold cursor-pointer" onClick={handleShow}/>
         </div>
-        <div className="mt-4 ml-2">
-          <UserView />
-        </div>
         <div className="h-[55%]">
-          <div className="w-full mt-2">
-            <input
-              type="text"
-              placeholder="What is happening ?"
-              className="py-2 border-none rounded-lg w-4/5"
-              onInput={(e) => setContent(e.currentTarget.value)}
-            />
-          </div>
           <div className="h-3/5">
             <label htmlFor="file" className="p-2 h-full">
               <div className="w-4/5 h-full mx-auto rounded-lg align-center bg-gray-200 outline-none cursor-pointer flex justify-center items-center relative overflow-y-auto">
@@ -97,11 +84,11 @@ const PostForm:React.FC<any> = ({handleShow,updatePost}) => {
             handleShow();
           }}
         >
-          Post
+          Update
         </button>
       </div>
     </div>
   );
 };
 
-export default PostForm;
+export default UpdateAvata;

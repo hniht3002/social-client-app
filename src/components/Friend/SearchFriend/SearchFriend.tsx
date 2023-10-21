@@ -2,6 +2,7 @@ import { useEffect, useState } from "react";
 import axiosInstance from "@/plugins/axios";
 import IUser from "@/types/user/user";
 import { AiOutlineSearch } from "react-icons/ai";
+import { Route, Routes, Link } from "react-router-dom";
 const SearchFriend = () => {
   const [value, setValue] = useState<string | "">()
   const [list, setList] = useState<IUser[] | null>()
@@ -55,7 +56,7 @@ const SearchFriend = () => {
                   <div className="mt-2">
                     <AiOutlineSearch />
                   </div>
-                  <p className="mt-[4px] ml-4 w-full">{item.name}</p>
+                  <Link to={`/profile/${item.id}`}><p className="mt-[4px] ml-4 w-full">{item.name}</p></Link>
                 </div>
               </li>
             ))}
@@ -65,6 +66,13 @@ const SearchFriend = () => {
             <h1>Not user to show</h1>
           </div>
         )}
+      </div>
+      <div>
+          <nav>
+              <Routes>
+                <Route path="\"></Route>     
+              </Routes>
+          </nav>
       </div>
     </div>
   )

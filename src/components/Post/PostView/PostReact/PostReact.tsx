@@ -7,7 +7,7 @@ import { useState, useEffect } from "react";
 import { IComment } from "@/types/comment/comment";
 import axiosInstance from "@/plugins/axios";
 import { useSelector } from "react-redux/es/hooks/useSelector";
-import getUserById from "@/services/getUserById";
+import handleUrlAvata from "@/services/handleUrlAvata";
 type IProp = {
   id: number;
 };
@@ -16,7 +16,12 @@ const PostReact: React.FC<IProp> = (props) => {
   const [comment, setComment] = useState<IComment[]>();
   const [commentInput, setCommentInput] = useState<string>();
   const user = useSelector((state:any)=>state.user)
-  console.log(user.value.data.name);
+  const [avata, setAvata] =useState<any>()
+  const handleAvata =async ()=>{
+      let url = await handleUrlAvata(`http://localhost:3001/avata/${user.value.data.id}.png`)
+      setAvata(url)
+  }
+  handleAvata()
   useEffect(() => {
     const getComment = async () => {
       try {
@@ -63,7 +68,7 @@ const PostReact: React.FC<IProp> = (props) => {
       <div className="bg-gray-200 w-[90%] h-[1px] mt-2 mx-auto"></div>
       <div className="flex w-[90%] gap-4 mx-auto mt-4">
         <img
-          src="https://taimienphi.vn/tmp/cf/aut/anh-gai-xinh-1.jpg"
+          src={avata}
           alt=""
           className="w-8 h-8 rounded-full"
         />
@@ -87,7 +92,7 @@ const PostReact: React.FC<IProp> = (props) => {
             {comment.map((item) => (
               <li key={item.id}>
                 <div className="flex w-[90%] mt-6 mx-auto">
-                  <img src={`http://localhost:3001/avata/${user.value.data.id}.png`} alt="" className="w-8 h-8 rounded-full" />
+                  <img src={`http://localhost:3001/avata/${item.userId}.png`} alt="" className="w-8 h-8 rounded-full" />
                   <div className="text-start ml-4 bg-gray-200 p-2 rounded-lg">
                     <p className="font-semibold">{item.userName}</p>
                     <div className="">{item.content}</div>

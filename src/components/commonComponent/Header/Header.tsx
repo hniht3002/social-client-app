@@ -1,11 +1,12 @@
 import { FaBell, FaUser } from "react-icons/fa";
 import { AiTwotoneMessage } from "react-icons/ai";
 import { PiMagnifyingGlassDuotone } from "react-icons/pi";
-import user from "@/data/userFake";
 import Tippy from "@tippyjs/react/headless";
 import { Route, Routes, Link } from "react-router-dom";
 import NavBarMobile from "../NavBar/NavBarMobile";
+import { useSelector } from "react-redux";
 function Header() {
+  const user = useSelector((state:any)=> state.user)
   return (
     <div className="wrapper w-full pb-1 shadow-xl shadow-gray-200 bg-white">
       <div className="flex justify-between w-5/6 m-auto h-14 items-center gap-4">
@@ -63,7 +64,7 @@ function Header() {
             </div>
           </Tippy>
 
-          <Link to="/profile">
+          <Link to={`/profile/${user.value.data.id}`}>
             <Tippy
               arrow={true}
               placement="bottom-end"

@@ -7,16 +7,17 @@ import axiosInstance from "@/plugins/axios";
 import Loading from "@/components/commonComponent/Loading/Loading";
 import { IPost } from "@/types/post/post";
 import UserInformation from "@/components/Profile/ProfileInformation/UserInformation";
-import user from "@/data/userFake";
+import { useParams, useSearchParams } from "react-router-dom";
 function Profile() {
   let [posts, setPosts] = useState<IPost[] | null>(null);
+  const idParam = useParams().id
+  
   useEffect(() => {
     const getData = async () => {
-      const id = 1;
       const limit = 5;
       try {
         const postData = await axiosInstance.get(
-          `/get-post-user?id=${id}&limit=${limit}`
+          `/get-post-user?id=${idParam}&limit=${limit}`
         );
         setPosts(postData.data.posts);
       } catch (error) {

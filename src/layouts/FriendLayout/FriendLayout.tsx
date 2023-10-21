@@ -15,7 +15,7 @@ const FriendLayout = ({ children }: { children: ReactNode }) => {
           <NavBar />
         </div>
         <div className="w-[18%]"></div>
-        <div className="main basis-4/5 flex mt-12">
+        <div className="main basis-4/5 flex mt-12 md:block">
           <div className="basis-4/5">
             <div className="flex justify-around">
               <div></div>
