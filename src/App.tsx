@@ -1,29 +1,22 @@
-import "@/App.css"
-import routes from "@/routes/routes"
-import { Routes, Route} from "react-router-dom";
-import { registered } from "./data/GlobalState";
+import "@/App.css";
+import routes from "@/routes/routes";
+import { Routes, Route, Navigate,redirect } from "react-router-dom";
+function App() { 
 
-function App() {
-  
-  if(!registered) {
-    return <div></div>
-  } else {
     return (
       <div className="App">
-          <Routes>
-            {routes.map((route, index) => {
-              let Element = route.component;
-              let Layout = route.layout;
-              return (
-                  <Route key={index} path={route.path} element = {<Layout> {<Element/>} </Layout>}></Route>
-              
-                )
-            })}
-          </Routes>
+        <Routes>
+          {routes.map((route, index) => {
+            let Element = route.component;
+            let Layout = route.layout;
+            return (
+              <Route key={index} path={route.path} element={ <Layout>{<Element/>}</Layout>}></Route>
+            );
+          })}
+        </Routes>
       </div>
     );
   }
-  
-}
+
 
 export default App;

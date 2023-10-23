@@ -7,11 +7,12 @@ import axiosInstance from "@/plugins/axios";
 import Loading from "@/components/commonComponent/Loading/Loading";
 import { IPost } from "@/types/post/post";
 import UserInformation from "@/components/Profile/ProfileInformation/UserInformation";
-import { useParams, useSearchParams } from "react-router-dom";
+import { useParams} from "react-router-dom";
+import getUser from "@/services/getUserById";
 function Profile() {
   let [posts, setPosts] = useState<IPost[] | null>(null);
   const idParam = useParams().id
-  
+  const {getUserById,user} = getUser() 
   useEffect(() => {
     const getData = async () => {
       const limit = 5;
@@ -24,15 +25,19 @@ function Profile() {
         console.log(error);
       }
     };
+    if(idParam){
+      getUserById(idParam)
+    }
+    
     getData();
   }, []);
-  console.log(posts);
+  
   return (
     <div className="w-full">
       <div className="w-[70%] mx-auto bg-gray-50 h-[1px]"></div>
       <div className="flex w-[70%] gap-4 mx-auto sm:block sm:w-[90%]">
-        <div className="basis-2/5">
-          <UserInformation />
+        <div className="basis-2/5" >
+          <UserInformation userProp = {user} />
         </div>
         <div className="basis-3/5">
           <div className="mt-4 text-end hidden">

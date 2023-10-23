@@ -19,7 +19,7 @@ function LoginForm() {
       const User: any = await axiosInstance.post("/login", data);
       dispatch(setUser(User));
       setToken(User.data.token)
-      console.log(getToken());
+      localStorage.setItem("token",User.data.token)
       
       if(User.status===200){
         navigate('/')
@@ -27,8 +27,7 @@ function LoginForm() {
     } catch (error) {
       console.log(error);
     }
-  };
-  
+  }
   return (
     <div>
       <section className="bg-gray-50 dark:bg-gray-900 h-screen">

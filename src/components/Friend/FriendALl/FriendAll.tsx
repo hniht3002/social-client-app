@@ -3,10 +3,10 @@ import { IFriend } from "@/types/friend/friend";
 import axiosInstance from "@/plugins/axios";
 import Loading from "@/components/commonComponent/Loading/Loading";
 import { useState, useEffect } from "react";
-import user from "@/data/userFake";
 import handleUrlAvata from "@/services/handleUrlAvata";
+import { useSelector } from "react-redux";
 function FriendAll() {
-  const id = user.id;
+  const user = useSelector((state:any)=> state.user)
   const [friend, setFriend] = useState<IFriend[]>();
   const [loading, setLoading] = useState(true);
   const [avata, setAvata] =useState<any>()
@@ -20,7 +20,7 @@ function FriendAll() {
   useEffect(() => {
     const getData = async () => {
       try {
-        const friendData = await axiosInstance.get(`/get-all-friend?id=${id}`);
+        const friendData = await axiosInstance.get(`/get-all-friend?id=${user.value.data.id}`);
         setFriend(friendData.data.friends);
         setLoading(false);
       } catch (error) {
@@ -61,8 +61,8 @@ function FriendAll() {
             ))}
           </ul>
         ) : (
-          <div className="w-2/4">
-            <p className="">Let connect send add friend to make new friend.</p>
+          <div className="w-2/4 ml-[40%]">
+            <p className="text-blue-600 text-xl">Let connect send add friend to make new friend.</p>
           </div>
         )}
       </div>

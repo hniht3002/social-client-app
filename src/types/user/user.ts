@@ -3,7 +3,7 @@ type IUser = {
     name:string,
     password:string,
     email:string,
-    birdthday:Date,
+    birdthday:string,
     address:string,
     role:string,
     avata:string

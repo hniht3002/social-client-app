@@ -7,8 +7,9 @@ import PostForm from "@/components/Post/PostCreate/PostForm";
 import { IPost } from "@/types/post/post";
 import { useState, useEffect } from "react";
 import axiosInstance from "@/plugins/axios";
+import { useSelector } from "react-redux";
 function Home() {
-  const id = 1;
+  const user = useSelector((state: any) => state.user);
   const [post, setPost] = useState<IPost[] | null>();
   const [show, setShow] = useState<boolean>(false);
   const handleShow = () => {
@@ -20,20 +21,20 @@ function Home() {
   };
   const getPost = async () => {
     try {
-      const postData = await axiosInstance.post(`/get-post-home/${id}`, {
-        offset: 0,
-      })
+      const postData = await axiosInstance.post(
+        `/get-post-home/1`,
+        {
+          offset: 0,
+        }
+      );
       setPost(postData.data.posts.reverse());
     } catch (error) {
       console.log(error);
     }
-  }
+  };
   useEffect(() => {
-    getPost()
-  }, [])
-  if (!registered) {
-    return <h1>Register page </h1>;
-  }
+    getPost();
+  }, []);
   return (
     <div className="mt-12">
       <div className="flex gap-4 sm:block">
@@ -46,15 +47,19 @@ function Home() {
           <div>
             {post ? (
               <ul>
-                {post.map((item) => (
-                  <li key={item.id}>
-                    <div className="w-full mx-auto mt-12 bg-white rounded-lg shadow-[0px_0px_15px_15px] shadow-gray-100">
-                      <PostHeader idPost={item.id}/>
-                      <PostContent content={item.content} file={item.file} />
-                      <PostReact id={item.id}/>
-                    </div>
-                  </li>
-                ))}
+                {post.length > 0 ? (
+                  post.map((item) => (
+                    <li key={item.id}>
+                      <div className="w-full mx-auto mt-12 bg-white rounded-lg shadow-[0px_0px_15px_15px] shadow-gray-100">
+                        <PostHeader idPost={item.id} />
+                        <PostContent content={item.content} file={item.file} />
+                        <PostReact id={item.id} />
+                      </div>
+                    </li>
+                  ))
+                ) : (
+                  <div className="mt-16 text-blue-600 text-2xl bg-white">Let make a friend to see their post</div>
+                )}
               </ul>
             ) : (
               <div>No post to show</div>
